@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
 * {
     padding: 0px;
@@ -16,7 +17,9 @@
 .heading h1 {
     padding-top: 25px;
     padding-left: 26px;
+    font-weight: 100;
     font-size: 62px;
+    font-family: 'Century Gothic';
 }
 
 .heading-list {
@@ -43,10 +46,11 @@
     color: #FFFFFF;
 }
 
-.add-popup{
+.add-popup {
     color: #FFFFFF;
 }
-.add-popup:hover{
+
+.add-popup:hover {
     cursor: pointer;
 }
 
@@ -56,9 +60,7 @@
 }
 
 /* MAIN */
-main{
-    height: 1000px;
-}
+
 .main-contacts h1 {
     margin-top: 32px;
     margin-left: 21px;
@@ -73,10 +75,11 @@ main{
 
 .contacts-list {
     width: 700px;
-    height: 600px;
-    /* border: 1px solid black; */
+    height: 585px;
     margin-top: 32px;
     margin-left: 25px;
+    overflow: scroll;
+    font-family: "Ebrima";
 }
 
 .details {
@@ -87,13 +90,13 @@ main{
     display: none;
 }
 
-.btn{
+.btn {
     float: right;
     margin-right: 32px;
     margin-top: 20px;
 }
 
-.close-btn{
+.close-btn {
     width: 30px;
     height: 30px;
     font-size: 18px;
@@ -170,32 +173,102 @@ main{
     border: none;
 }
 
-.add-btn:hover{
+.add-btn:hover {
     background-color: lightgreen;
     cursor: pointer;
 }
 
-/* SCRIPT */
-.showDetails{
-    border: 1px solid gray;
-    height: 140px;
-    /* display: block; */
+.show-data {
+    width: 800px;
+    height: 700px;
+    margin-left: 32px;
+    display: flex;
 }
 
-.fullName{
+/* SCRIPT */
+.showDetails {
+    border: 1px solid gray;
+    height: 140px;
+}
+
+.fullName {
     font-size: 43px;
     margin-left: 12px;
     margin-top: 12px;
+    font-weight: 100;
 }
 
-.fullEmail{
+.fullEmail {
     font-size: 20px;
     margin-left: 20px;
     margin-top: 7px;
 }
 
-.fullMobile{
+.fullMobile {
     font-size: 20px;
     margin-left: 20px;
 }
 
+.view-details{
+    width: 570px;
+    font-family: 'Lato', sans-serif;
+}
+
+.view-details-name {
+    margin-left: 32px;
+    font-size: 45px;
+}
+
+.view-details-email {
+    margin-top: 23px;
+    margin-left: 32px;
+    font-size: 20px;
+}
+
+.view-details-mobile {
+    margin-top: 23px;
+    margin-left: 32px;
+    font-size: 20px;
+}
+
+.view-details-landline {
+    margin-left: 32px;
+    font-size: 20px;
+}
+
+.view-details-website {
+    margin-top: 23px;
+    margin-left: 32px;
+    font-size: 20px;
+}
+
+.view-details-address {
+    margin-top: 23px;
+    margin-left: 32px;
+    font-size: 20px;
+}
+
+.view-details-edit{
+    width: 25px;
+    height: 25px;
+    margin-right: 12px;
+    margin-left: 32px;
+}
+.view-details-delete{
+    width: 20px;
+    height: 30px;
+    margin: 0px 10px;
+}
+
+.edit{
+    font-size: 20px;
+}
+.edit:hover{
+    cursor: pointer;
+}
+.delete{
+    font-size: 20px;
+}
+.delete:hover{
+    cursor: pointer;
+}
