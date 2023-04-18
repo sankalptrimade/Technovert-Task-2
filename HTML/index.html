@@ -4,7 +4,8 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
         <title>Address Book</title>
         <link rel="stylesheet" href="./../CSS/style.css">
     </head>
@@ -19,17 +20,16 @@
                     <li class="add-popup">+ADD</li>
                 </ul>
                 <div class="blog-icon">
-                    <a href="/#"><img src="./../Images/blog-icon/blog-icon.png"
+                    <a href=""><img src="./../Images/blog-icon/blog-icon.png"
                             alt="blog-icon"></a>
                 </div>
             </div>
         </header>
         <main>
             <div class="main-contacts">
-                <h1>Contacts</h1>
+                <h1>CONTACTS</h1>
                 <div class="contacts">
                     <div class="contacts-list">
-
                     </div>
                     <div class="details">
                         <div class="btn">
@@ -37,42 +37,52 @@
                                 X
                             </button>
                         </div>
-                        <div class="add-details">
-                            <label for="name">Name</label>
-                            <input type="text" name="name" id="txt-name"
-                                class="input">
-                            <input type="hidden" id="txt-Id" class="input-id">
-                            <label for="email">Email</label>
-                            <input type="email" name="email" id="txt-email"
-                                class="input">
-                            <div class="contact-number">
-                                <div class="mobile">
-                                    <label for="mobile" class="contact-mobile">Mobile</label>
-                                    <input type="text" name="mobile"
-                                        id="txt-mobile"
-                                        class="input-contact">
+                        <form id="user-details">
+                            <div class="add-details">
+                                <label for="name">Name</label>
+                                <input type="text" name="name" id="txt-name"
+                                    class="input">
+                                    <!-- <p class="name-check"></p> -->
+                                <input type="hidden" id="txt-Id"
+                                    class="input-id">
+                                <label for="email">Email</label>
+                                <input type="email" name="email" id="txt-email"
+                                    class="input">
+                                    <!-- <p class="email-check"></p> -->
+                                <div class="contact-number">
+                                    <div class="mobile">
+                                        <label for="mobile"
+                                            class="contact-mobile">Mobile</label>
+                                        <input type="text" name="mobile"
+                                            id="txt-mobile"
+                                            class="input-contact">
+                                            <!-- <p class="mobile-check"></p> -->
+                                    </div>
+                                    <div class="landline">
+                                        <label for="landline"
+                                            class="contact-landline">Landline</label>
+                                        <input type="text" name="landline"
+                                            id="txt-landline"
+                                            class="input-contact">
+                                            <!-- <p class="landline-check"></p> -->
+                                    </div>
                                 </div>
-                                <div class="landline">
-                                    <label for="landline"
-                                        class="contact-landline">Landline</label>
-                                    <input type="text" name="landline"
-                                        id="txt-landline"
-                                        class="input-contact">
-                                </div>
+                                <label for="website">Website</label>
+                                <input type="text" name="website"
+                                    id="txt-website"
+                                    class="input">
+                                    <!-- <p class="website-check"></p> -->
+                                <label for="address">Address</label>
+                                <textarea name="address" id="txt-address"
+                                    class="input-address"></textarea>
+                                    <!-- <p class="address-check"></p> -->
                             </div>
-                            <label for="website">Website</label>
-                            <input type="text" name="website" id="txt-website"
-                                class="input">
-                            <label for="address">Address</label>
-                            <textarea name="address" id="txt-address"
-                                class="input-address"></textarea>
-                        </div>
-                        <div class="button">
-                            <button class="add-btn">
-                                Add
-                            </button>
-                        </div>
-
+                            <div class="button">
+                                <button type="submit" class="add-btn" disabled="disabled">
+                                    Add
+                                </button>
+                            </div>
+                        </form>
                     </div>
                     <div class="show-data">
                     </div>

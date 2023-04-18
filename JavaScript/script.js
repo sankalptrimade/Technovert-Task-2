@@ -1,5 +1,12 @@
 $(document).ready(function () {
+    // $('.name-check').hide();
+    // $('.email-check').hide();
+    // $('.mobile-check').hide();
+    // $('.landline-check').hide();
+    // $('.website-check').hide();
+    // $('.address-check').hide();
     loadData();
+    $('.add-btn').css('background', 'lightgreen');
     $('.add-popup').click(function () {
         $('.details').css('display', 'block');
         $('.show-data').css('display', 'none');
@@ -14,7 +21,7 @@ $(document).ready(function () {
     })
 
     $('.add-btn').click(function () {
-        debugger;
+ 
         if ($('#txt-Id').val() == '') {
             addData();
         }
@@ -28,15 +35,13 @@ $(document).ready(function () {
         if (cnf == true) {
             const id = $(this).parent().parent().find('.view-details-name').attr('data-id');
             deleteData(id);
-            location.reload();
-        } else{
+        } else {
             loadData();
-            location.reload();
         }
-
+        location.reload();
     });
 
-    $('.showDetails').click(function(){
+    $('.showDetails').click(function () {
         const id = $(this).find('.fullName').attr('data-id');
         showData(id);
         $('.details').css('display', 'none');
@@ -61,10 +66,22 @@ $(document).ready(function () {
         $('#txt-address').val(address);
         $("#txt-Id").val(id);
         $('.add-btn').text("Update");
-
         $('.details').css('display', 'block');
         $('.show-data').css('display', 'none');
     })
+
+    $('#user-details').keyup(function () {
+        // debugger;
+        var addBtn = $('.add-btn');
+
+        if (($('#txt-name').val().trim() != "") && ($('#txt-email').val().trim() != "") && ($('#txt-mobile').val().trim() != "") && ($('#txt-landline').val().trim() != "") && ($('#txt-website').val().trim() != "") && ($('#txt-address').val().trim() != "")) {
+            addBtn.removeAttr("disabled");
+            $('.add-btn').css('background', 'green');
+        } else {
+            addBtn.attr("disabled", "disabled");
+        }
+    });
+
 });
 
 function addData() {
@@ -99,7 +116,7 @@ function addData() {
         loadData();
     }
     clearForm();
-    location.reload();
+    // location.reload();
 }
 
 function loadData() {
@@ -156,7 +173,7 @@ function showData(id) {
             dynamicDiv = dynamicDiv + '<p class="view-details-email">Email: ' + localArray[i].email + '</p>';
             dynamicDiv = dynamicDiv + '<p class="view-details-mobile">Mobile: +91 ' + localArray[i].mobile + '</p>';
             dynamicDiv = dynamicDiv + '<p class="view-details-landline">Landline: 040 ' + localArray[i].landline + '</p>';
-            dynamicDiv = dynamicDiv + '<p class="view-details-website">Website: '+localArray[i].website+'</p>';
+            dynamicDiv = dynamicDiv + '<p class="view-details-website">Website: ' + localArray[i].website + '</p>';
             dynamicDiv = dynamicDiv + '<p class="view-details-address" >Address: ' + localArray[i].address + '</p>';
             dynamicDiv = dynamicDiv + '</div>'
             dynamicDiv = dynamicDiv + '<div class = "view-detials-image">'
@@ -169,7 +186,7 @@ function showData(id) {
 }
 
 function updateData() {
-    
+
     let localData = localStorage.getItem('localData');
     let localArray = JSON.parse(localData);
     const oldRecord = localArray.find(m => m.id == $("#txt-Id").val());
@@ -185,3 +202,178 @@ function updateData() {
     location.reload();
 }
 
+function validate() {
+    // Name validation
+    function Name_validation() {
+        let name_err = true;
+        let name_val = $("#txt-name").val();
+        if (name_val.length == '') {
+            $('.name-check').show();
+            $('.name-check').html('**Please fill the name');
+            $('.name-check').focus();
+            $('.name-check').css("color", "red");
+            name_err = false;
+            return name_err;
+        } else {
+            $('.name-check').hide();
+        }
+
+        if (name_val.length > 3) {
+            $('.name-check').show();
+            $('.name-check').html('**Name length must be greater than 3');
+            $('.name-check').focus();
+            $('.name-check').css("color", "red");
+            name_err = false;
+            return name_err;
+        } else {
+            $('.name-check').hide();
+        }
+        return name_err;
+    }
+
+    // Email Validation
+    function Email_validation() {
+        let email_err = true;
+        let email_val = $("#txt-email").val();
+        if (email_val.length == '') {
+            $('.email-check').show();
+            $('.email-check').html('**Please fill the email');
+            $('.email-check').focus();
+            $('.email-check').css("color", "red");
+            email_err = false;
+            return email_err;
+        } else if (!validEmail(email_val)) {
+            $('.email-check').show();
+            $('.email-check').html('**Enter a valid email');
+            $('.email-check').focus();
+            $('.email-check').css("color", "red");
+            name_err = false;
+            return email_err;
+        } else {
+            $('.email-check').hide();
+        }
+        function validEmail(email) {
+            var EmailRegex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            return EmailRegex.test(email);
+        }
+        return email_err;
+    }
+
+    // Mobile validation
+    function Mobile_validation() {
+        let mobile_err = true;
+        let mobile_val = $("#txt-mobile").val();
+        if (mobile_val.length == '') {
+            $('.mobile-check').show();
+            $('.mobile-check').html('**Please fill the mobile');
+            $('.mobile-check').focus();
+            $('.mobile-check').css("color", "red");
+            mobile_err = false;
+            return mobile_err;
+        } else if (!validMobile(mobile_val)) {
+            $('.mobile-check').show();
+            $('.mobile-check').html('**Enter a valid mobile number');
+            $('.mobile-check').focus();
+            $('.mobile-check').css("color", "red");
+            mobile_err = false;
+            return mobile_err;
+        } else {
+            $('.mobile-check').hide();
+        }
+        function validMobile(mobile) {
+            var MobileRegex = /^(0|91)?[6-9][0-9]{9}$/;
+            return MobileRegex.test(mobile);
+        }
+        return mobile_err;
+    }
+
+    // Landline validation
+    function Landline_validation() {
+        let landline_err = true;
+        let landline_val = $("#txt-landline").val();
+        if (landline_val.length == '') {
+            $('.landline-check').show();
+            $('.landline-check').html('**Please fill the landline number');
+            $('.landline-check').focus();
+            $('.landline-check').css("color", "red");
+            landline_err = false;
+            return landline_err;
+        } else if (!validLandline(landline_val)) {
+            $('.landline-check').show();
+            $('.landline-check').html('**Enter a valid landline number');
+            $('.landline-check').focus();
+            $('.landline-check').css("color", "red");
+            landline_err = false;
+            return landline_err;
+        } else {
+            $('.landline-check').hide();
+        }
+        function validLandline(landline) {
+            var LandlineRegex = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})$/;
+            return LandlineRegex.test(landline);
+        }
+        return landline_err;
+    }
+
+    // Website Validation
+    function Website_validation() {
+        let website_err = true;
+        let website_val = $("#txt-website").val();
+        if (website_val.length == '') {
+            $('.website-check').show();
+            $('.website-check').html('**Please fill the website');
+            $('.website-check').focus();
+            $('.website-check').css("color", "red");
+            website_err = false;
+            return website_err;
+        } else if (!validWebsite(website_val)) {
+            $('.website-check').show();
+            $('.website-check').html('**Enter a valid website');
+            $('.website-check').focus();
+            $('.website-check').css("color", "red");
+            website_err = false;
+            return website_err;
+        } else {
+            $('.website-check').hide();
+        }
+        function validWebsite(website) {
+            var WebsiteRegex = /^http(s)?:\/\/(www\.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/;
+            return WebsiteRegex.test(website);
+        }
+        return website_err;
+    }
+
+    // Address Validation
+    function Address_validation() {
+        let address_err = true;
+        let address_val = $("#txt-address").val();
+        if (address_val.length == '') {
+            $('.address-check').show();
+            $('.address-check').html('**Please fill the address');
+            $('.address-check').focus();
+            $('.address-check').css("color", "red");
+            address_err = false;
+            return address_err;
+        } else {
+            $('.address-check').hide();
+        }
+
+        if (address_val.length > 10) {
+            $('.address-check').show();
+            $('.address-check').html('**Address length must be greater than 10');
+            $('.address-check').focus();
+            $('.address-check').css("color", "red");
+            address_err = false;
+            return address_err;
+        } else {
+            $('.address-check').hide();
+        }
+        return address_err;
+    }
+    if (!Name_validation() && !Email_validation() && !Mobile_validation() && !Landline_validation() && !Website_validation() && !Address_validation()) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
