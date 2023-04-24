@@ -37,48 +37,50 @@
                                 X
                             </button>
                         </div>
-                        <form id="user-details">
+                        <form id="user-details" autocomplete="off">
                             <div class="add-details">
-                                <label for="name">Name</label>
+                                <label for="name" class="add-details-label">Name</label>
                                 <input type="text" name="name" id="txt-name"
                                     class="input">
-                                    <!-- <p class="name-check"></p> -->
+                                <p class="check-name"></p>
                                 <input type="hidden" id="txt-Id"
                                     class="input-id">
-                                <label for="email">Email</label>
+                                <label for="email" class="add-details-label">Email</label>
                                 <input type="email" name="email" id="txt-email"
                                     class="input">
-                                    <!-- <p class="email-check"></p> -->
+                                <p class="check-email"></p>
                                 <div class="contact-number">
                                     <div class="mobile">
                                         <label for="mobile"
-                                            class="contact-mobile">Mobile</label>
+                                            class="contact-mobile
+                                            add-details-label">Mobile</label>
                                         <input type="text" name="mobile"
                                             id="txt-mobile"
                                             class="input-contact">
-                                            <!-- <p class="mobile-check"></p> -->
+                                        <p class="check-mobile"></p>
                                     </div>
                                     <div class="landline">
                                         <label for="landline"
-                                            class="contact-landline">Landline</label>
+                                            class="contact-landline
+                                            add-details-label">Landline</label>
                                         <input type="text" name="landline"
                                             id="txt-landline"
                                             class="input-contact">
-                                            <!-- <p class="landline-check"></p> -->
+                                        <p class="check-landline"></p>
                                     </div>
                                 </div>
-                                <label for="website">Website</label>
+                                <label for="website" class="add-details-label">Website</label>
                                 <input type="text" name="website"
                                     id="txt-website"
                                     class="input">
-                                    <!-- <p class="website-check"></p> -->
-                                <label for="address">Address</label>
+                                <p class="check-website"></p>
+                                <label for="address" class="add-details-label">Address</label>
                                 <textarea name="address" id="txt-address"
                                     class="input-address"></textarea>
-                                    <!-- <p class="address-check"></p> -->
+                                <p class="check-address"></p>
                             </div>
                             <div class="button">
-                                <button type="submit" class="add-btn" disabled="disabled">
+                                <button type="submit" class="add-btn" disabled = "disabled">
                                     Add
                                 </button>
                             </div>
@@ -90,5 +92,7 @@
             </div>
         </main>
         <script src="./../JavaScript/script.js" type="module"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
     </body>
 </html>

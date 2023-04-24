@@ -59,6 +59,9 @@
 }
 
 /* MAIN */
+main{
+    height: 900px;
+}
 
 .main-contacts h1 {
     margin-top: 32px;
@@ -77,14 +80,13 @@
     height: 585px;
     margin-top: 32px;
     margin-left: 25px;
-    overflow: scroll;
     font-family: "Ebrima";
 }
 
 .details {
     width: 932px;
     margin-left: 32px;
-    height: 742px;
+    height: 780px;
     box-shadow: 0px 0px 17px 3px black;
     display: none;
 }
@@ -100,6 +102,9 @@
     height: 30px;
     font-size: 18px;
 }
+.close-btn:hover {
+    cursor: pointer;
+}
 
 .add-details {
     width: 698px;
@@ -107,12 +112,13 @@
     margin-left: 32px;
 }
 
-.add-details label {
+.add-details-label {
     display: block;
     font-size: 20px;
     margin-top: 18px;
     font-weight: bold;
     margin-bottom: 7px;
+    color: black;
 }
 
 .input {
@@ -177,7 +183,7 @@
 }
 
 .show-data {
-    width: 800px;
+    width: 1000px;
     height: 700px;
     margin-left: 32px;
     display: flex;
@@ -207,7 +213,7 @@
     margin-left: 20px;
 }
 
-.view-details{
+.view-details {
     width: 570px;
     font-family: 'Lato', sans-serif;
 }
@@ -246,27 +252,43 @@
     font-size: 20px;
 }
 
-.view-details-edit{
+.view-details-edit {
     width: 25px;
     height: 25px;
     margin-right: 12px;
     margin-left: 32px;
 }
-.view-details-delete{
+
+.view-details-edit:hover {
+    cursor: pointer;
+}
+
+.view-details-delete {
     width: 20px;
     height: 30px;
     margin: 0px 10px;
 }
 
-.edit{
-    font-size: 20px;
-}
-.edit:hover{
+.view-details-delete:hover {
     cursor: pointer;
 }
-.delete{
+
+.edit {
     font-size: 20px;
 }
-.delete:hover{
+
+.edit:hover {
     cursor: pointer;
+}
+
+.delete {
+    font-size: 20px;
+}
+
+.delete:hover {
+    cursor: pointer;
+}
+
+.error {
+    color: red;
 }

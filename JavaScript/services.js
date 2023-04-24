@@ -29,7 +29,6 @@ export class ContactService {
       localArray.push(Contact);
       localStorage.setItem("localData", JSON.stringify(localArray));
     }
-    // return Contact;
   }
 
   getId() {
@@ -46,40 +45,41 @@ export class ContactService {
     let localData = localStorage.getItem("localData");
     let localArray = JSON.parse(localData);
     for (let i = 0; i < localArray.length; i++) {
-      if (localArray[i].Id === Number(Id)) {
+      let element = localArray[i];
+      if (element.Id === Number(Id)) {
         $(".show-data").html("");
         let dynamicDiv = '<div class = "view-details">';
         dynamicDiv =
           dynamicDiv +
           '<h3 class="view-details-name" data-Id=' +
-          localArray[i].Id +
+          element.Id +
           ">" +
-          localArray[i].name +
+          element.name +
           "</h3>";
         dynamicDiv =
           dynamicDiv +
           '<p class="view-details-email">Email: ' +
-          localArray[i].email +
+          element.email +
           "</p>";
         dynamicDiv =
           dynamicDiv +
           '<p class="view-details-mobile">Mobile: +91 ' +
-          localArray[i].mobile +
+          element.mobile +
           "</p>";
         dynamicDiv =
           dynamicDiv +
-          '<p class="view-details-landline">Landline: 040 ' +
-          localArray[i].landline +
+          '<p class="view-details-landline">Landline: 040 30 ' +
+          element.landline +
           "</p>";
         dynamicDiv =
           dynamicDiv +
           '<p class="view-details-website">Website: ' +
-          localArray[i].website +
+          element.website +
           "</p>";
         dynamicDiv =
           dynamicDiv +
           '<p class="view-details-address" >Address: ' +
-          localArray[i].address +
+          element.address +
           "</p>";
         dynamicDiv = dynamicDiv + "</div>";
         dynamicDiv = dynamicDiv + '<div class = "view-detials-image">';
@@ -123,185 +123,6 @@ export class ContactService {
     oldRecord.website = contactObject.website;
     oldRecord.address = contactObject.address;
     localStorage.setItem("localData", JSON.stringify(localArray));
-    
-    // location.reload();
   }
-
-
 }
 
-// function validate() {
-//     // Name valIdation
-//     function Name_valIdation() {
-//         let name_err = true;
-//         let name_val = $("#txt-name").val();
-//         if (name_val.length == '') {
-//             $('.name-check').show();
-//             $('.name-check').html('**Please fill the name');
-//             $('.name-check').focus();
-//             $('.name-check').css("color", "red");
-//             name_err = false;
-//             return name_err;
-//         } else {
-//             $('.name-check').hIde();
-//         }
-
-//         if (name_val.length > 3) {
-//             $('.name-check').show();
-//             $('.name-check').html('**Name length must be greater than 3');
-//             $('.name-check').focus();
-//             $('.name-check').css("color", "red");
-//             name_err = false;
-//             return name_err;
-//         } else {
-//             $('.name-check').hIde();
-//         }
-//         return name_err;
-//     }
-
-//     // Email ValIdation
-//     function Email_valIdation() {
-//         let email_err = true;
-//         let email_val = $("#txt-email").val();
-//         if (email_val.length == '') {
-//             $('.email-check').show();
-//             $('.email-check').html('**Please fill the email');
-//             $('.email-check').focus();
-//             $('.email-check').css("color", "red");
-//             email_err = false;
-//             return email_err;
-//         } else if (!valIdEmail(email_val)) {
-//             $('.email-check').show();
-//             $('.email-check').html('**Enter a valId email');
-//             $('.email-check').focus();
-//             $('.email-check').css("color", "red");
-//             name_err = false;
-//             return email_err;
-//         } else {
-//             $('.email-check').hIde();
-//         }
-//         function valIdEmail(email) {
-//             var EmailRegex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-//             return EmailRegex.test(email);
-//         }
-//         return email_err;
-//     }
-
-//     // Mobile valIdation
-//     function Mobile_valIdation() {
-//         let mobile_err = true;
-//         let mobile_val = $("#txt-mobile").val();
-//         if (mobile_val.length == '') {
-//             $('.mobile-check').show();
-//             $('.mobile-check').html('**Please fill the mobile');
-//             $('.mobile-check').focus();
-//             $('.mobile-check').css("color", "red");
-//             mobile_err = false;
-//             return mobile_err;
-//         } else if (!valIdMobile(mobile_val)) {
-//             $('.mobile-check').show();
-//             $('.mobile-check').html('**Enter a valId mobile number');
-//             $('.mobile-check').focus();
-//             $('.mobile-check').css("color", "red");
-//             mobile_err = false;
-//             return mobile_err;
-//         } else {
-//             $('.mobile-check').hIde();
-//         }
-//         function valIdMobile(mobile) {
-//             var MobileRegex = /^(0|91)?[6-9][0-9]{9}$/;
-//             return MobileRegex.test(mobile);
-//         }
-//         return mobile_err;
-//     }
-
-//     // Landline valIdation
-//     function Landline_valIdation() {
-//         let landline_err = true;
-//         let landline_val = $("#txt-landline").val();
-//         if (landline_val.length == '') {
-//             $('.landline-check').show();
-//             $('.landline-check').html('**Please fill the landline number');
-//             $('.landline-check').focus();
-//             $('.landline-check').css("color", "red");
-//             landline_err = false;
-//             return landline_err;
-//         } else if (!valIdLandline(landline_val)) {
-//             $('.landline-check').show();
-//             $('.landline-check').html('**Enter a valId landline number');
-//             $('.landline-check').focus();
-//             $('.landline-check').css("color", "red");
-//             landline_err = false;
-//             return landline_err;
-//         } else {
-//             $('.landline-check').hIde();
-//         }
-//         function valIdLandline(landline) {
-//             var LandlineRegex = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})$/;
-//             return LandlineRegex.test(landline);
-//         }
-//         return landline_err;
-//     }
-
-//     // Website ValIdation
-//     function Website_valIdation() {
-//         let website_err = true;
-//         let website_val = $("#txt-website").val();
-//         if (website_val.length == '') {
-//             $('.website-check').show();
-//             $('.website-check').html('**Please fill the website');
-//             $('.website-check').focus();
-//             $('.website-check').css("color", "red");
-//             website_err = false;
-//             return website_err;
-//         } else if (!valIdWebsite(website_val)) {
-//             $('.website-check').show();
-//             $('.website-check').html('**Enter a valId website');
-//             $('.website-check').focus();
-//             $('.website-check').css("color", "red");
-//             website_err = false;
-//             return website_err;
-//         } else {
-//             $('.website-check').hIde();
-//         }
-//         function valIdWebsite(website) {
-//             var WebsiteRegex = /^http(s)?:\/\/(www\.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/;
-//             return WebsiteRegex.test(website);
-//         }
-//         return website_err;
-//     }
-
-//     // Address ValIdation
-//     function Address_valIdation() {
-//         let address_err = true;
-//         let address_val = $("#txt-address").val();
-//         if (address_val.length == '') {
-//             $('.address-check').show();
-//             $('.address-check').html('**Please fill the address');
-//             $('.address-check').focus();
-//             $('.address-check').css("color", "red");
-//             address_err = false;
-//             return address_err;
-//         } else {
-//             $('.address-check').hIde();
-//         }
-
-//         if (address_val.length > 10) {
-//             $('.address-check').show();
-//             $('.address-check').html('**Address length must be greater than 10');
-//             $('.address-check').focus();
-//             $('.address-check').css("color", "red");
-//             address_err = false;
-//             return address_err;
-//         } else {
-//             $('.address-check').hIde();
-//         }
-//         return address_err;
-//     }
-//     if (!Name_valIdation() && !Email_valIdation() && !Mobile_valIdation() && !Landline_valIdation() && !Website_valIdation() && !Address_valIdation()) {
-//         return true;
-//     }
-//     else {
-//         return false;
-//     }
-// }
