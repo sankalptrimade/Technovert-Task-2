@@ -55,7 +55,6 @@ $(document).ready(function () {
   });
 
   $(".show-data").on("click", ".delete, .view-details-delete", function () {
-    debugger;
     const cnf = confirm("Are you sure you want to delete this data?");
     if (cnf == true) {
       const id = $(this)
@@ -74,13 +73,12 @@ $(document).ready(function () {
     debugger;
     const id = $(this).find(".fullName").attr("data-id");
     contactService.showData(id);
-    $(".details").hide(); //css("display", "none");
-    $(".show-data").show(); //css("display", "flex");
+    $(".details").hide();
+    $(".show-data").show();
     clearError();
   });
 
   $(".show-data").on("click", ".edit, .view-details-edit", function () {
-    // debugger;
     clearError();
     const name = $(this).parent().parent().find(".view-details-name").html();
     const email = $(this)
@@ -132,18 +130,71 @@ $(document).ready(function () {
   });
 
   $("#user-details").keyup(function () {
-    debugger;
     var addBtn = $(".add-btn");
-    if (validate() == true) {
+    if (
+      validate() == true &&
+      $("#txt-name").val().trim() != "" &&
+      $("#txt-email").val().trim() != "" &&
+      $("#txt-mobile").val().trim() != "" &&
+      $("#txt-landline").val().trim() != "" &&
+      $("#txt-website").val().trim() != "" &&
+      $("#txt-address").val().trim() != ""
+    ) {
       addBtn.removeAttr("disabled");
       $(".add-btn").css("background", "green");
     } else {
       addBtn.attr("disabled", "disabled");
       $(".add-btn").css("background", "lightgreen");
     }
-    
   });
 });
+
+export function showData(element) {
+  $(".show-data").html("");
+  let dynamicDiv = '<div class = "view-details">';
+  dynamicDiv =
+    dynamicDiv +
+    '<h3 class="view-details-name" data-Id=' +
+    element.Id +
+    ">" +
+    element.name +
+    "</h3>";
+  dynamicDiv =
+    dynamicDiv +
+    '<p class="view-details-email">Email: ' +
+    element.email +
+    "</p>";
+  dynamicDiv =
+    dynamicDiv +
+    '<p class="view-details-mobile">Mobile: +91 ' +
+    element.mobile +
+    "</p>";
+  dynamicDiv =
+    dynamicDiv +
+    '<p class="view-details-landline">Landline: 040 30 ' +
+    element.landline +
+    "</p>";
+  dynamicDiv =
+    dynamicDiv +
+    '<p class="view-details-website">Website: ' +
+    element.website +
+    "</p>";
+  dynamicDiv =
+    dynamicDiv +
+    '<p class="view-details-address" >Address: ' +
+    element.address +
+    "</p>";
+  dynamicDiv = dynamicDiv + "</div>";
+  dynamicDiv = dynamicDiv + '<div class = "view-detials-image">';
+  dynamicDiv =
+    dynamicDiv +
+    '<img src="./../Images/edit-icon/Edit-icon.png" alt="edit-icon" class="view-details-edit"><span class="edit">EDIT</span>';
+  dynamicDiv =
+    dynamicDiv +
+    '<img src="./../Images/delete-icon/delete1.png" alt="delete-icon" class="view-details-delete"><span class="delete">DELETE</span>';
+  dynamicDiv = dynamicDiv + "</div>";
+  $(".show-data").append(dynamicDiv);
+}
 
 function clearForm() {
   $("#txt-name").val("");
@@ -201,24 +252,12 @@ function validate() {
   function Name_validation() {
     let name_err = true;
     let name_val = $("#txt-name").val();
-    if (name_val.length == "") {
-      $(".check-name").show();
-      $(".check-name").html("**Please fill the name");
-      $(".check-name").focus();
-      $(".check-name").css("color", "red");
-      name_err = false;
-      // return name_err;
-    } else {
-      $(".check-name").hide();
-    }
-
-    if (name_val.length < 3) {
+    if (name_val.length < 3 && name_val != "") {
       $(".check-name").show();
       $(".check-name").html("**Name length must be greater than 3");
       $(".check-name").focus();
       $(".check-name").css("color", "red");
       name_err = false;
-      // return name_err;
     } else {
       $(".check-name").hide();
       name_err = true;
@@ -230,24 +269,12 @@ function validate() {
   function Email_validation() {
     let email_err = true;
     let email_val = $("#txt-email").val();
-    if (email_val.length == "") {
-      $(".check-email").show();
-      $(".check-email").html("**Please fill the email");
-      $(".check-email").focus();
-      $(".check-email").css("color", "red");
-      email_err = false;
-      // return email_err;
-    } else {
-      $(".check-email").hide();
-      email_err = true;
-    }
-    if (!validEmail(email_val)) {
+    if (!validEmail(email_val) && email_val != "") {
       $(".check-email").show();
       $(".check-email").html("**Enter a valid email");
       $(".check-email").focus();
       $(".check-email").css("color", "red");
       email_err = false;
-      // return email_err;
     } else {
       $(".check-email").hide();
       email_err = true;
@@ -264,24 +291,12 @@ function validate() {
   function Mobile_validation() {
     let mobile_err = true;
     let mobile_val = $("#txt-mobile").val();
-    if (mobile_val.length == "") {
-      $(".check-mobile").show();
-      $(".check-mobile").html("**Please fill the mobile");
-      $(".check-mobile").focus();
-      $(".check-mobile").css("color", "red");
-      mobile_err = false;
-      // return mobile_err;
-    } else {
-      $(".check-mobile").hide();
-      mobile_err = true;
-    }
-    if (!validMobile(mobile_val)) {
+    if (!validMobile(mobile_val) && mobile_val != "") {
       $(".check-mobile").show();
       $(".check-mobile").html("**Enter a valid mobile number");
       $(".check-mobile").focus();
       $(".check-mobile").css("color", "red");
       mobile_err = false;
-      // return mobile_err;
     } else {
       $(".check-mobile").hide();
       mobile_err = true;
@@ -297,25 +312,12 @@ function validate() {
   function Landline_validation() {
     let landline_err = true;
     let landline_val = $("#txt-landline").val();
-    if (landline_val.length == "") {
-      $(".check-landline").show();
-      $(".check-landline").html("**Please fill the landline number");
-      $(".check-landline").focus();
-      $(".check-landline").css("color", "red");
-      landline_err = false;
-      // return landline_err;
-    } else {
-      $(".check-landline").hide();
-      landline_err = true;
-    }
-
-    if (!validLandline(landline_val)) {
+    if (!validLandline(landline_val) && landline_val != "") {
       $(".check-landline").show();
       $(".check-landline").html("**Enter a valid landline number");
       $(".check-landline").focus();
       $(".check-landline").css("color", "red");
       landline_err = false;
-      // return landline_err;
     } else {
       $(".check-landline").hide();
       landline_err = true;
@@ -331,24 +333,12 @@ function validate() {
   function Website_validation() {
     let website_err = true;
     let website_val = $("#txt-website").val();
-    if (website_val.length == "") {
-      $(".check-website").show();
-      $(".check-website").html("**Please fill the website");
-      $(".check-website").focus();
-      $(".check-website").css("color", "red");
-      website_err = false;
-      // return website_err;
-    } else {
-      $(".check-website").hide();
-      website_err = true;
-    }
-    if (!validWebsite(website_val)) {
+    if (!validWebsite(website_val) && website_val != "") {
       $(".check-website").show();
       $(".check-website").html("**Enter a valid website");
       $(".check-website").focus();
       $(".check-website").css("color", "red");
       website_err = false;
-      // return website_err;
     } else {
       $(".check-website").hide();
       website_err = true;
@@ -365,18 +355,7 @@ function validate() {
   function Address_validation() {
     let address_err = true;
     let address_val = $("#txt-address").val();
-    if (address_val.length == "") {
-      $(".check-address").show();
-      $(".check-address").html("**Please fill the address");
-      $(".check-address").focus();
-      $(".check-address").css("color", "red");
-      address_err = false;
-    } else {
-      $(".check-address").hide();
-      address_err = true;
-    }
-
-    if (address_val.length < 10) {
+    if (address_val.length < 10 && address_val != "") {
       $(".check-address").show();
       $(".check-address").html("**Address length must be greater than 10");
       $(".check-address").focus();
