@@ -4,10 +4,12 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./../CSS/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <script
             src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script src="./../JavaScript/script.js" type="module" defer></script>
         <title>Address Book</title>
-        <link rel="stylesheet" href="./../CSS/style.css">
     </head>
     <body>
         <header class="header">
@@ -17,7 +19,8 @@
             <div class="heading-list">
                 <ul class="heading-ul">
                     <li class="heading-list-items"><a href="./index.html">HOME</a></li>
-                    <li class="add-popup">+ADD</li>
+                    
+                    <i class="fa-sharp fa-solid fa-plus fa-sm" style="color: #ffffff;"></i><li class="add-popup">ADD</li>
                 </ul>
                 <div class="blog-icon">
                     <a href=""><img src="./../Images/blog-icon/blog-icon.png"
@@ -33,54 +36,52 @@
                     </div>
                     <div class="details">
                         <div class="btn">
-                            <button class="close-btn">
-                                X
-                            </button>
+                            <i class="fa-sharp fa-solid fa-xmark fa-2xl close-btn" style="color: #000000;"></i>
                         </div>
                         <form id="user-details" autocomplete="off">
                             <div class="add-details">
-                                <label for="name" class="add-details-label">Name<span style="color:red">*</span></label>
+                                <label for="name" class="add-details-label">Name <i class="fa-sharp fa-solid fa-asterisk fa-2xs" style="color: #ff0000;"></i></label>
                                 <input type="text" name="name" id="txt-name"
-                                    class="input">
+                                    class="input" placeholder="Enter your name">
                                 <p class="check-name"></p>
                                 <input type="hidden" id="txt-Id"
                                     class="input-id">
-                                <label for="email" class="add-details-label">Email<span style="color:red">*</span></label>
+                                <label for="email" class="add-details-label">Email <i class="fa-sharp fa-solid fa-asterisk fa-2xs" style="color: #ff0000;"></i></label>
                                 <input type="email" name="email" id="txt-email"
-                                    class="input">
+                                    class="input" placeholder="Enter your email">
                                 <p class="check-email"></p>
                                 <div class="contact-number">
                                     <div class="mobile">
                                         <label for="mobile"
                                             class="contact-mobile
-                                            add-details-label">Mobile<span style="color:red">*</span></label>
-                                        <input type="text" name="mobile"
+                                            add-details-label">Mobile <i class="fa-sharp fa-solid fa-asterisk fa-2xs" style="color: #ff0000;"></i></label>
+                                        <input type="number" name="mobile"
                                             id="txt-mobile"
-                                            class="input-contact">
+                                            class="input-contact" placeholder="Enter your mobile number" onkeydown="return event.keyCode !== 69">
                                         <p class="check-mobile"></p>
                                     </div>
                                     <div class="landline">
                                         <label for="landline"
                                             class="contact-landline
-                                            add-details-label">Landline<span style="color:red">*</span></label>
-                                        <input type="text" name="landline"
+                                            add-details-label">Landline <i class="fa-sharp fa-solid fa-asterisk fa-2xs" style="color: #ff0000;"></i></label>
+                                        <input type="number" name="landline"
                                             id="txt-landline"
-                                            class="input-contact">
+                                            class="input-contact" placeholder="Enter your landline number" onkeydown="return event.keyCode !== 69"   >
                                         <p class="check-landline"></p>
                                     </div>
                                 </div>
-                                <label for="website" class="add-details-label">Website<span style="color:red">*</span></label>
+                                <label for="website" class="add-details-label">Website <i class="fa-sharp fa-solid fa-asterisk fa-2xs" style="color: #ff0000;"></i></label>
                                 <input type="text" name="website"
                                     id="txt-website"
-                                    class="input">
+                                    class="input" placeholder="Enter website URL">
                                 <p class="check-website"></p>
-                                <label for="address" class="add-details-label">Address<span style="color:red">*</span></label>
+                                <label for="address" class="add-details-label">Address <i class="fa-sharp fa-solid fa-asterisk fa-2xs" style="color: #ff0000;"></i></label>
                                 <textarea name="address" id="txt-address"
-                                    class="input-address"></textarea>
+                                    class="input-address" placeholder="Enter your address" ></textarea>
                                 <p class="check-address"></p>
                             </div>
                             <div class="button">
-                                <button type="submit" class="add-btn" disabled = "disabled">
+                                <button type="submit" class="add-btn" disabled="disabled">
                                     Add
                                 </button>
                             </div>
@@ -91,8 +92,5 @@
                 </div>
             </div>
         </main>
-        <script src="./../JavaScript/script.js" type="module"></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
     </body>
 </html>

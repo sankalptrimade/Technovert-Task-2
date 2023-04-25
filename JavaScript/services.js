@@ -1,5 +1,4 @@
-import { showData } from "./script.js";
-
+import { showData, displayLoadData, addEmptyRow } from "./script.js";
 export class Contact {
   Id;
   name;
@@ -80,5 +79,18 @@ export class ContactService {
     oldRecord.website = contactObject.website;
     oldRecord.address = contactObject.address;
     localStorage.setItem("localData", JSON.stringify(localArray));
+  }
+
+  loadData() {
+    let localData = localStorage.getItem("localData");
+    if (localData != null) {
+      let localArray = JSON.parse(localData);
+      let index = 1;
+      localArray.forEach((element) => {
+        displayLoadData(element);
+        index++;
+      });
+      addEmptyRow();
+    }
   }
 }

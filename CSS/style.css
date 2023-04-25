@@ -9,9 +9,9 @@
 
 /* HEADER */
 .heading {
-    background-color: #209fc9;
+    background-color: #0095c7;
     color: white;
-    height: 112px;
+    height: 123px;
 }
 
 .heading h1 {
@@ -39,6 +39,12 @@
     font-weight: bold;
     justify-content: space-between;
     font-family: 'Roboto Condensed', sans-serif;
+}
+
+.heading-ul i {
+    color: #ffffff;
+    margin-top: 15px;
+    margin-left: 32px;
 }
 
 .heading-list-items a {
@@ -123,6 +129,7 @@ main{
     font-weight: bold;
     margin-bottom: 7px;
     color: black;
+    font-family: 'Nanum Gothic', sans-serif;
 }
 
 .input {
@@ -139,12 +146,21 @@ main{
     border: 1px solid black;
     padding: 5px;
     font-size: 20px;
+    font-family: sans-serif;
 }
 
 .contact-number {
     width: 710px;
     display: flex;
     justify-content: space-between;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
 }
 
 .mobile {
@@ -176,7 +192,7 @@ main{
 .add-btn {
     width: 149px;
     height: 56px;
-    background: green;
+    background-color: green;
     color: white;
     font-size: 25px;
     border: none;
@@ -197,6 +213,14 @@ main{
 .showDetails {
     border: 1px solid gray;
     height: 140px;
+}
+.showDetails:hover{
+    cursor: pointer;
+    background-color: #cce9f3;
+}
+
+.active{
+    background-color: #cce9f3;
 }
 
 .fullName {
@@ -255,12 +279,16 @@ main{
     margin-left: 32px;
     font-size: 20px;
 }
+.view-details-image {
+    display: flex;
+    height: 40px;
+    width: 290px;
+    justify-content: space-between;
+}
 
 .view-details-edit {
-    width: 25px;
-    height: 25px;
-    margin-right: 12px;
-    margin-left: 32px;
+    width: 20px;
+    height: 24px;
 }
 
 .view-details-edit:hover {
@@ -270,7 +298,7 @@ main{
 .view-details-delete {
     width: 20px;
     height: 30px;
-    margin: 0px 10px;
+    /* margin: 0px 10px; */
 }
 
 .view-details-delete:hover {
@@ -278,7 +306,8 @@ main{
 }
 
 .edit {
-    font-size: 20px;
+    margin-top: 1px;
+    font-size: 23px;
 }
 
 .edit:hover {
@@ -286,7 +315,7 @@ main{
 }
 
 .delete {
-    font-size: 20px;
+    font-size: 23px;
 }
 
 .delete:hover {
