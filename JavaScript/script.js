@@ -1,10 +1,9 @@
 import { Contact, ContactService } from "./services.js";
 
 var emptyRow = "<h3>No Records Available</h3>";
-
+var contactService = new ContactService();
 $(document).ready(function () {
-  var contactService = new ContactService();
-  contactService.loadData();
+  displayDetails();
   clearError();
   $(".add-btn").css("background-color", "#e3e314");
   $(".add-popup").click(function () {
@@ -23,8 +22,10 @@ $(document).ready(function () {
   });
 
   $(".add-btn").click(function () {
+    debugger;
     clearError();
     if ($("#txt-Id").val() == "") {
+      // addData();
       const userDetails = {
         Id: contactService.getId(),
         name: $("#txt-name").val(),
@@ -48,7 +49,7 @@ $(document).ready(function () {
       };
       var contact = new Contact(userDetails);
       contactService.updateData(contact);
-      contactService.loadData();
+      displayDetails();
       clearForm();
     }
   });
@@ -59,28 +60,33 @@ $(document).ready(function () {
       const id = $(this)
         .parent()
         .parent()
+        .parent()
         .find(".view-details-name")
         .attr("data-id");
       contactService.deleteData(id);
     } else {
-      contactService.loadData();
+      displayDetails();
     }
     location.href = "http://127.0.0.1:5500/HTML/index.html";
   });
 
   $(".showDetails").click(function () {
+    debugger;
     $(this).addClass("active").siblings().removeClass("active");
     const id = $(this).find(".fullName").attr("data-id");
-    contactService.showData(id);
+    var element = contactService.showData(id);
+    displayContactDetails(element);
     $(".details").hide();
     $(".show-data").show();
     clearError();
   });
 
   $(".show-data").on("click", ".edit, .view-details-edit", function () {
+    debugger;
     clearError();
-    const name = $(this).parent().parent().find(".view-details-name").html();
+    const name = $(this).parent().parent().parent().find(".view-details-name").html();
     const email = $(this)
+      .parent()
       .parent()
       .parent()
       .find(".view-details-email")
@@ -89,10 +95,12 @@ $(document).ready(function () {
     const mobile = $(this)
       .parent()
       .parent()
+      .parent()
       .find(".view-details-mobile")
       .html()
       .slice(12);
     const landline = $(this)
+      .parent()
       .parent()
       .parent()
       .find(".view-details-landline")
@@ -101,16 +109,19 @@ $(document).ready(function () {
     const website = $(this)
       .parent()
       .parent()
+      .parent()
       .find(".view-details-website")
       .html()
       .slice(9);
     const address = $(this)
       .parent()
       .parent()
+      .parent()
       .find(".view-details-address")
       .html()
       .slice(9);
     const id = $(this)
+      .parent()
       .parent()
       .parent()
       .find(".view-details-name")
@@ -141,15 +152,24 @@ $(document).ready(function () {
       $("#txt-address").val().trim() != ""
     ) {
       addBtn.removeAttr("disabled");
-      $(".add-btn").css("background-color", "green");
+      $(".add-btn").css("background", "green");
     } else {
       addBtn.attr("disabled", "disabled");
-      $(".add-btn").css("background-color", "#e3e314");
+      $(".add-btn").css("background", "#e3e314");
     }
   });
 });
 
-export function showData(element) {
+function clearForm() {
+  $("#txt-name").val("");
+  $("#txt-email").val("");
+  $("#txt-mobile").val("");
+  $("#txt-landline").val("");
+  $("#txt-website").val("");
+  $("#txt-address").val("");
+}
+
+function displayContactDetails(element) {
   $(".show-data").html("");
   let dynamicDiv = '<div class = "view-details">';
   dynamicDiv =
@@ -196,31 +216,33 @@ export function showData(element) {
   $(".show-data").append(dynamicDiv);
 }
 
-export function displayLoadData(element) {
-  let dynamicDiv = '<div class="showDetails">';
-  dynamicDiv =
-    dynamicDiv +
-    "<p class = 'fullName' data-Id=" +
-    element.Id +
-    ">" +
-    element.name +
-    "</p>";
-  dynamicDiv = dynamicDiv + "<p class = 'fullEmail'>" + element.email + "</p>";
-  dynamicDiv =
-    dynamicDiv + "<p class = 'fullMobile'>+91 " + element.mobile + "</p>";
-  $(".contacts-list").append(dynamicDiv);
+function displayDetails() {
+  var contactDetails = contactService.loadData();
+  if (contactDetails != null) {
+    let index = 1;
+    contactDetails.forEach((element) => {
+      let dynamicDiv = '<div class="showDetails">';
+      dynamicDiv =
+        dynamicDiv +
+        "<h3 class = 'fullName' data-Id=" +
+        element.Id +
+        ">" +
+        element.name +
+        "</h3>";
+      dynamicDiv =
+        dynamicDiv + "<p class = 'fullEmail'>" + element.email + "</p>";
+      dynamicDiv =
+        dynamicDiv + "<p class = 'fullMobile'>+91 " + element.mobile + "</p>";
+      $(".contacts-list").append(dynamicDiv);
+      index++;
+    });
+  } else {
+    addEmptyRow();
+  }
 }
 
-function clearForm() {
-  $("#txt-name").val("");
-  $("#txt-email").val("");
-  $("#txt-mobile").val("");
-  $("#txt-landline").val("");
-  $("#txt-website").val("");
-  $("#txt-address").val("");
-}
-
-export function addEmptyRow() {
+function addEmptyRow() {
+  debugger;
   if ($(".contacts-list").children().length == 0) {
     $(".contacts-list").append(emptyRow);
   }
@@ -242,7 +264,7 @@ function validate() {
     let name_val = $("#txt-name").val();
     if (name_val.length < 3 && name_val != "") {
       $(".check-name").show();
-      $(".check-name").html("**Name length must be greater than 3.");
+      $(".check-name").html("**Name length must be greater than 3");
       $(".check-name").focus();
       $(".check-name").css("color", "red");
       name_err = false;
@@ -259,7 +281,7 @@ function validate() {
     let email_val = $("#txt-email").val();
     if (!validEmail(email_val) && email_val != "") {
       $(".check-email").show();
-      $(".check-email").html("**Enter a valid email. Eg:- xyz@mail.com");
+      $(".check-email").html("**Enter a valid email");
       $(".check-email").focus();
       $(".check-email").css("color", "red");
       email_err = false;
@@ -281,7 +303,7 @@ function validate() {
     let mobile_val = $("#txt-mobile").val();
     if (!validMobile(mobile_val) && mobile_val != "") {
       $(".check-mobile").show();
-      $(".check-mobile").html("**Enter a valid mobile number. Eg:- 9876543210");
+      $(".check-mobile").html("**Enter a valid mobile number");
       $(".check-mobile").focus();
       $(".check-mobile").css("color", "red");
       mobile_err = false;
@@ -302,9 +324,7 @@ function validate() {
     let landline_val = $("#txt-landline").val();
     if (!validLandline(landline_val) && landline_val != "") {
       $(".check-landline").show();
-      $(".check-landline").html(
-        "**Enter a valid landline number. Eg:- 1231211"
-      );
+      $(".check-landline").html("**Enter a valid landline number");
       $(".check-landline").focus();
       $(".check-landline").css("color", "red");
       landline_err = false;
@@ -325,9 +345,7 @@ function validate() {
     let website_val = $("#txt-website").val();
     if (!validWebsite(website_val) && website_val != "") {
       $(".check-website").show();
-      $(".check-website").html(
-        "**Enter a valid website. Eg:- http://www.xyz.com"
-      );
+      $(".check-website").html("**Enter a valid website");
       $(".check-website").focus();
       $(".check-website").css("color", "red");
       website_err = false;

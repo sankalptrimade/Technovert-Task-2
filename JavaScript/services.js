@@ -1,4 +1,3 @@
-import { showData, displayLoadData, addEmptyRow } from "./script.js";
 export class Contact {
   Id;
   name;
@@ -45,12 +44,7 @@ export class ContactService {
   showData(Id) {
     let localData = localStorage.getItem("localData");
     let localArray = JSON.parse(localData);
-    for (let i = 0; i < localArray.length; i++) {
-      let element = localArray[i];
-      if (element.Id === Number(Id)) {
-        showData(element);
-      }
-    }
+    return localArray.find((p) => p.Id == Id);
   }
 
   deleteData(Id) {
@@ -85,12 +79,8 @@ export class ContactService {
     let localData = localStorage.getItem("localData");
     if (localData != null) {
       let localArray = JSON.parse(localData);
-      let index = 1;
-      localArray.forEach((element) => {
-        displayLoadData(element);
-        index++;
-      });
-      addEmptyRow();
+      return localArray;
     }
+    return null;
   }
 }
